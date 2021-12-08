@@ -8,12 +8,30 @@ type Book {
   author: String!
 }
 
-type User {
+type UserEntity {
+  id: Int!
   email: String!
-  name: String!
+  password: String!
 }
 
 type Query {
+  booksOpen: [Book!]!
   books: [Book!]!
-  users: [User!]!
+  users: [UserEntity!]!
+  usersOpen: [UserEntity!]!
+  login(getUserInput: GetUserInput!): UserEntity!
+}
+
+input GetUserInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  register(createUserInput: CreateUserInput!): UserEntity!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
 }
